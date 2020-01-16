@@ -10,4 +10,4 @@ tutorial:
 https://www.tutorialspoint.com/assembly_programming/index.htm
 
 list:
-https://syscalls.w3challs.com/?arch=x86_64
+https://beta.hackndo.com/assembly-basics/
