@@ -20,5 +20,4 @@ int		ft_strcmp(char *s, char *s2);
 void		*ft_memcpy(void *dest, void *src, unsigned int size);
 char		*ft_strdup(char *str);
 char 		*ft_strcpy(char *dest, char *src);
-//int			ft_strcpy(char *dest, char *src);
 #endif

@@ -14,7 +14,11 @@ NAME	=   libasm.a
 
 SRCS	=	ft_strlen.s \
 			ft_strcmp.s	\
-			ft_strcpy.s 
+			ft_strcpy.s\
+			ft_write.s\
+			ft_read.s\
+			ft_strdup.s\
+			ft_memcpy.s 
 
 OBJS	=	$(SRCS:.s=.o)
 LIBC	= ar -rcs

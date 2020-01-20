@@ -18,6 +18,9 @@ int	main()
 {
 	char *a;
 	char *b;
+	char c;
+
+	c = 'A';
 	a = strdup("bod");
 	b = strdup("bo");
 	printf("%d\n", ft_strlen(a));
@@ -28,4 +31,5 @@ int	main()
 	printf("\nSTRCMP:%d\n", strcmp(a, b));
 	printf("++%s++\n", ft_strcpy(b, a));
 	printf("==%s==\n==%s==", a, b);
+	ft_write(1, &c, 1);
 }
