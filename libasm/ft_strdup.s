@@ -1,6 +1,6 @@
-section .txt
-	global _ft_strdup
-	extern _ft_memcpy
+section .text			;code section 
+	global _ft_strdup	;make label avalaible to linker
+	extern _ft_memcpy	;
 
 _ft_strdup:
 	call	_ft_strlen
