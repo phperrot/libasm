@@ -23,9 +23,9 @@ int	main()
 	c = 'A';
 	a = strdup("bod");
 	b = strdup("bo");
-	printf("%d\n", ft_strlen(a));
-	printf("%d\n", ft_strlen(b));
-	printf("%d\n", ft_strlen(""));
+//	printf("%d\n", ft_strlen(a));
+//	printf("%d\n", ft_strlen(b));
+//	printf("%d\n", ft_strlen(""));
 	printf("==%s==\n==%s==", a, b);
 	printf("\nft_STRCMP:%d", ft_strcmp(a, b));
 	printf("\nSTRCMP:%d\n", strcmp(a, b));
