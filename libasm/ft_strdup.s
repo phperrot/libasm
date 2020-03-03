@@ -1,17 +1,25 @@
-section .text			;code section 
-	global _ft_strdup	;make label avalaible to linker
-	extern _ft_memcpy	;
+extern _ft_strlen
+extern _ft_strcpy
+extern _malloc
 
+global _ft_strdup
+
+; char *ft_strdup(const char *str);
 _ft_strdup:
-	call	_ft_strlen
-	inc	rax				;rax = len, on l'augmente de 1
-	mov	r15, rax 		;storing rax (ie len) in r15
-	push	rdi 		;saving rdi
-	mov	rdi, rax 		;rdi = rax; (because rdi will be used by malloc)
-	call	_malloc		;with rdi = rax (ie len)
-	pop	rdi 			;fetching rdi (ie len)
-	mov	rsi, rdi 		;rsi = rdi
-	mov	rdi, rax 		;rdi = rax, rac being the address of memory allocated by malloc
-	mov	rdx, r15		;rdx = r15, ie rdx = len, is then used by memcpy
-	call	_ft_memcpy 	;calling memcpy, rax (ie final result) takes the value returnd by memcpy
+	push rdi			; save rdi because it will be overwrite for malloc
+
+	call _ft_strlen		; rdi is still == str
+	inc  rax			; len is stored in rac; len++ for '\0'
+
+	mov  rdi, rax		; size to malloc
+	call _malloc		
+	cmp  rax, 0			;if rax does not exist, go handle error!
+	je   FT_STRDUP_ERROR
+
+	pop  rsi			; original str as src
+	mov  rdi, rax		; allocated as dest
+	call _ft_strcpy
+	ret
+FT_STRDUP_ERROR:
+	pop  rdi
 	ret
