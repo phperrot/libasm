@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 13:39:01 by phperrot          #+#    #+#             */
-/*   Updated: 2020/03/03 16:00:55 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/03/03 16:29:42 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ int	main()
 	
 	t_list *lst;
 	t_list *tmp;
-	lst = ft_create_elem("1");
+	lst = ft_create_elem("8");
 	lst->next = ft_create_elem("2");
 	lst->next->next = ft_create_elem("3");
 	lst->next->next->next = ft_create_elem("4");
@@ -234,4 +234,11 @@ int	main()
 		tmp = tmp->next;
 	}
 	printf("LST SIZE:%d\n", ft_list_size(lst));
+	ft_list_sort(&lst, ft_strcmp);
+	tmp = lst;
+	while (tmp)
+	{
+		printf("%s\n", tmp->data);
+		tmp = tmp->next;
+	}
 }

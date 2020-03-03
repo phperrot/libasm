@@ -6,7 +6,7 @@
 #    By: phperrot <marvin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/16 04:18:47 by phperrot          #+#    #+#              #
-#    Updated: 2020/03/03 15:40:33 by phperrot         ###   ########.fr        #
+#    Updated: 2020/03/03 16:13:20 by phperrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS	=	ft_strlen.s \
 			ft_strdup.s\
 			ft_list_push_front_bonus.s\
 			ft_list_size_bonus.s\
+			ft_list_sort_bonus.s\
 
 OBJS	=	$(SRCS:.s=.o)
 LIBC	= ar -rcs
