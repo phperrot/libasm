@@ -241,5 +241,5 @@ int	main()
 		printf("%s\n", tmp->data);
 		tmp = tmp->next;
 	}
-	ft_atoi("   3");
+	printf("ATOI:%d\n", ft_atoi("    +5 "));
 }
