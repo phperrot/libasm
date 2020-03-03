@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 21:00:52 by phperrot          #+#    #+#             */
-/*   Updated: 2020/03/03 16:28:55 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/03/03 16:52:20 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ char 		*ft_strcpy(char *dest, char *src);
 void		ft_list_push_front(t_list **begin_list, void *data);
 int			ft_list_size(t_list *begin_list);
 void ft_list_sort(t_list **begin_list, int (*cmp)(void*, void*));
-
+int		ft_atoi(char *str);
 #endif
