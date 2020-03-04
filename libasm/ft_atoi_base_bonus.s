@@ -8,6 +8,7 @@ _ft_atoi:
 	mov rax, 0 		;resultat final
 GOING_TO_FIRST_INT:
 	inc rcx
+	mov ax, 0
 ;	cmp	BYTE[rdi + rcx], 32	
 ;	je GOING_TO_FIRST_INT
 	cmp	BYTE[rdi + rcx], 9	
@@ -67,14 +68,13 @@ MAIN:
 	je FOUND_DIGIT
 
 FOUND_DIGIT:
+;	mov cx, 10
+;	mul cx
 	mov ax, word byte[rdi + rcx]
-	sub ax, 8240
-	mov cx, 10
-	mul cx
+	sub ax, 65584
 	movzx rax, ax
-;	movzx rax, word byte[rdi + rcx]
-;	sub rax, 8240
-;	movsxd ax, rax
+	inc rcx
+	je MAIN
 	
 
 FT_ATOI_END:
