@@ -67,12 +67,14 @@ MAIN:
 	je FOUND_DIGIT
 
 FOUND_DIGIT:
-	movzx rax, word byte[rdi + rcx]
-	sub rax, 8240
-	mov al, 10
-	mul rax 
-;	movsx rax, word ax
-
+	mov ax, word byte[rdi + rcx]
+	sub ax, 8240
+	mov cx, 10
+	mul cx
+	movzx rax, ax
+;	movzx rax, word byte[rdi + rcx]
+;	sub rax, 8240
+;	movsxd ax, rax
 	
 
 FT_ATOI_END:
