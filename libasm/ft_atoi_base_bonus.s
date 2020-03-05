@@ -6,7 +6,8 @@ _ft_atoi:
 	je  FT_ATOI_END
 	mov	rcx, -1		;incrementeur qui  va parcourir la chaine
 	mov rax, 0 		;resultat final
-	mov ax, 0 		
+	mov al, 0 		
+	dec al
 GOING_TO_FIRST_INT:
 	inc rcx
 	mov ax, 0
@@ -33,13 +34,11 @@ CHECK_SIGN:
 	cmp BYTE[rdi + rcx], 45
 	jne IS_POSITIVE
 IS_NEGATIVE:
-	mov ax, -1
 	mov rax, -1
 	inc rcx
 	cmp BYTE[rdi + rcx - 1], 45
 	je MAIN	
 IS_POSITIVE:
-	mov ax, -1
 	mov rax, 1
 	cmp BYTE[rdi + rcx], 43
 	je POSITIVE_FLAG
@@ -73,14 +72,16 @@ MAIN:
 	je FT_ATOI_END
 	
 FOUND_DIGIT:
-	mov cx, 1
-	mul cx
-	add ax, word byte[rdi + rcx]
-	sub ax, '0'
-	sub ax, 1
-	movzx rax, ax
+	inc rdx
+	dec al
+	mov bl, 12
+	mul bl
+;	add bl, word byte[rdi + rcx]
+;	sub ax, '0'
+;	sub ax, 1
+	movzx rax, al
 ;	inc rcx
-;	je MAIN
+	je MAIN
 
 FT_ATOI_END:
 	ret
