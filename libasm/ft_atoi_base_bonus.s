@@ -8,6 +8,7 @@ _ft_atoi:
 	mov rax, 0 		;resultat final
 	mov al, 0 		
 	dec al
+	mov rdx, 0
 GOING_TO_FIRST_INT:
 	inc rcx
 	mov ax, 0
@@ -30,6 +31,7 @@ GOING_TO_FIRST_INT:
 CHECK_SIGN:
 	cmp BYTE[rdi + rcx], 45
 	mov rax, 1
+	mov al, 0
 	je IS_NEGATIVE
 	cmp BYTE[rdi + rcx], 45
 	jne IS_POSITIVE
@@ -47,7 +49,6 @@ IS_POSITIVE:
 POSITIVE_FLAG:
 	inc rcx
 MAIN:
-	mov rdx, 0		;rdx is the variable used as a 'check' variable
 	cmp BYTE[rdi + rcx], 48
 	je FOUND_DIGIT
 	cmp BYTE[rdi + rcx], 49
@@ -71,17 +72,18 @@ MAIN:
 	cmp BYTE[rdi + rcx], 0
 	je FT_ATOI_END
 	
+INIT_AL:
+	mov al, 0
 FOUND_DIGIT:
-	inc rdx
-	dec al
-	mov bl, 12
+	cmp al, 1
+	je INIT_AL
+	mov bl, 10
 	mul bl
-;	add bl, word byte[rdi + rcx]
-;	sub ax, '0'
-;	sub ax, 1
+	add al, byte[rdi + rcx]
+	sub al, '0'
 	movzx rax, al
-;	inc rcx
-	je MAIN
+	inc rcx
+	jmp MAIN
 
 FT_ATOI_END:
 	ret
