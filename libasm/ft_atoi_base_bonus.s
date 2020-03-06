@@ -49,6 +49,7 @@ IS_POSITIVE:
 POSITIVE_FLAG:
 	inc rcx
 MAIN:
+	inc rdx
 	cmp BYTE[rdi + rcx], 48
 	je FOUND_DIGIT
 	cmp BYTE[rdi + rcx], 49
@@ -74,14 +75,16 @@ MAIN:
 	
 INIT_AL:
 	mov al, 0
+	mov rdx, 4
 FOUND_DIGIT:
-	cmp al, 1
+	cmp rdx, 1
 	je INIT_AL
 	mov bl, 10
 	mul bl
 	add al, byte[rdi + rcx]
 	sub al, '0'
 	movzx rax, al
+;	mov rax, rcx
 	inc rcx
 	jmp MAIN
 
