@@ -51,4 +51,4 @@ ret
 
 ######OPERATION on REGISTERS 
 https://beta.hackndo.com/assembly-basics/
-
+https://www.cs.uaf.edu/courses/cs301/2014-fall/notes/bits/

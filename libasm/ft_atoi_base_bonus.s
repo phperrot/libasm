@@ -7,9 +7,9 @@ INIT:
 	mov rax, 0
 	mov rdx, 0
 LOOP:
-	cmp rdx, rsi
+	cmp rdx, rdi
 	je END
-	add rax, rdi
+	add rax, rsi
 	inc rdx
 	jmp LOOP
 END:
@@ -18,92 +18,93 @@ END:
 _ft_atoi:
 	cmp rdi, 0		;check if parameter is NULL
 	je  FT_ATOI_END
-	mov	rcx, -1		;incrementeur qui  va parcourir la chaine
+	mov	r10, -1		;incrementeur qui  va parcourir la chaine
 	mov rax, 0 		;resultat final
 	mov al, 0 		
 	dec al
 	mov rdx, 0
 GOING_TO_FIRST_INT:
-	inc rcx
-	mov ax, 0
-;	cmp	BYTE[rdi + rcx], 32	
+	inc r10
+;	mov ax, 0
+;	cmp	BYTE[rdi + r10], 32	
 ;	je GOING_TO_FIRST_INT
-	cmp	BYTE[rdi + rcx], 9	
+	cmp	BYTE[rdi + r10], 9	
 	je GOING_TO_FIRST_INT
-	cmp	BYTE[rdi + rcx], 10	
+	cmp	BYTE[rdi + r10], 10	
 	je GOING_TO_FIRST_INT
-	cmp	BYTE[rdi + rcx], 11	
+	cmp	BYTE[rdi + r10], 11	
 	je GOING_TO_FIRST_INT
-	cmp	BYTE[rdi + rcx], 12
+	cmp	BYTE[rdi + r10], 12
 	je GOING_TO_FIRST_INT
-	cmp	BYTE[rdi + rcx], 13	
+	cmp	BYTE[rdi + r10], 13	
 	je GOING_TO_FIRST_INT
-	cmp	BYTE[rdi + rcx], 32	
+	cmp	BYTE[rdi + r10], 32	
 	je GOING_TO_FIRST_INT
-	cmp	BYTE[rdi + rcx], 0	
+	cmp	BYTE[rdi + r10], 0	
 	je FT_ATOI_END
 CHECK_SIGN:
-	cmp BYTE[rdi + rcx], 45
+	cmp BYTE[rdi + r10], 45
 	mov rax, 1
 	mov al, 0
 	je IS_NEGATIVE
-	cmp BYTE[rdi + rcx], 45
+	cmp BYTE[rdi + r10], 45
 	jne IS_POSITIVE
 IS_NEGATIVE:
-	mov rax, -1
-	inc rcx
-	cmp BYTE[rdi + rcx - 1], 45
+	mov rax, 1
+	inc r10
+	cmp BYTE[rdi + r10 - 1], 45
 	je MAIN	
 IS_POSITIVE:
 	mov rax, 1
-	cmp BYTE[rdi + rcx], 43
+	cmp BYTE[rdi + r10], 43
 	je POSITIVE_FLAG
-	cmp BYTE[rdi + rcx], 43
+	cmp BYTE[rdi + r10], 43
 	jne MAIN
 POSITIVE_FLAG:
-	inc rcx
+	inc r10
 MAIN:
 	inc rdx
-	cmp BYTE[rdi + rcx], 48
+	cmp BYTE[rdi + r10], 48
 	je FOUND_DIGIT
-	cmp BYTE[rdi + rcx], 49
+	cmp BYTE[rdi + r10], 49
 	je FOUND_DIGIT
-	cmp BYTE[rdi + rcx], 50
+	cmp BYTE[rdi + r10], 50
 	je FOUND_DIGIT
-	cmp BYTE[rdi + rcx], 51
+	cmp BYTE[rdi + r10], 51
 	je FOUND_DIGIT
-	cmp BYTE[rdi + rcx], 52
+	cmp BYTE[rdi + r10], 52
 	je FOUND_DIGIT
-	cmp BYTE[rdi + rcx], 53
+	cmp BYTE[rdi + r10], 53
 	je FOUND_DIGIT
-	cmp BYTE[rdi + rcx], 54
+	cmp BYTE[rdi + r10], 54
 	je FOUND_DIGIT
-	cmp BYTE[rdi + rcx], 55
+	cmp BYTE[rdi + r10], 55
 	je FOUND_DIGIT
-	cmp BYTE[rdi + rcx], 56
+	cmp BYTE[rdi + r10], 56
 	je FOUND_DIGIT
-	cmp BYTE[rdi + rcx], 57
+	cmp BYTE[rdi + r10], 57
 	je FOUND_DIGIT
-	cmp BYTE[rdi + rcx], 0
+	cmp BYTE[rdi + r10], 0
 	je FT_ATOI_END
 	
-INIT_AL:		;those lines because i can't initialize al to 0 (no idea why)
-	mov al, 0
+INIT_rcx:		;those lines because i can't initialize al to 0 (no idea why)
+	mov rcx, 0
+	mov rax, 0
 	mov rdx, 4
 FOUND_DIGIT:
 	cmp rdx, 1
-	je INIT_AL
+	je INIT_rcx
 	mov r9, rdi
-	movsx rdi, al
-	mov rsi, 10
+	mov rdi, 10
+	mov rsi, rax
 	call _ft_multiply
 	mov rdi, r9
-	add al, byte[rdi + rcx]
-	sub al, '0'
-;	mov rax, qword[rdi + rcx]
-;	movzx rax, al
-;	mov rax, rcx
-	inc rcx
+;	mov rcx,qword[rdi + r10]
+;	sub rcx, '0'
+;	add rax, rcx
+	add rax, qword[rdi + r10]
+	sub rax, '0'
+	inc r10
 	jmp MAIN
 
 FT_ATOI_END:
