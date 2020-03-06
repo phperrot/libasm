@@ -48,3 +48,7 @@ For example, this loads 3 into rax and returns.  It's a kinda roundabout way to 
 push 3
 pop rax
 ret
+
+######OPERATION on REGISTERS 
+https://beta.hackndo.com/assembly-basics/
+

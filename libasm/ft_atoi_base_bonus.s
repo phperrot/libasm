@@ -1,5 +1,19 @@
+
 section .text						; code section
 global _ft_atoi
+
+_ft_multiply:
+INIT:
+	mov rax, 0
+	mov rdx, 0
+LOOP:
+	cmp rdx, rsi
+	je END
+	add rax, rdi
+	inc rdx
+	jmp LOOP
+END:
+	ret
 
 _ft_atoi:
 	cmp rdi, 0		;check if parameter is NULL
@@ -73,17 +87,21 @@ MAIN:
 	cmp BYTE[rdi + rcx], 0
 	je FT_ATOI_END
 	
-INIT_AL:
+INIT_AL:		;those lines because i can't initialize al to 0 (no idea why)
 	mov al, 0
 	mov rdx, 4
 FOUND_DIGIT:
 	cmp rdx, 1
 	je INIT_AL
-	mov bl, 10
-	mul bl
+	mov r9, rdi
+	movsx rdi, al
+	mov rsi, 10
+	call _ft_multiply
+	mov rdi, r9
 	add al, byte[rdi + rcx]
 	sub al, '0'
-	movzx rax, al
+;	mov rax, qword[rdi + rcx]
+;	movzx rax, al
 ;	mov rax, rcx
 	inc rcx
 	jmp MAIN
